@@ -1,6 +1,6 @@
 ﻿import javax.swing.*;
 
-//Генерируем интерфейс программы
+//Creating user interface
 public class InterfaceCreator extends JFrame{
 	JFrame frame;
 	JButton button;
@@ -17,13 +17,13 @@ public class InterfaceCreator extends JFrame{
 	
 	public InterfaceCreator() {
 		
-		// Добавляем закрытие, положение, размер
+		// Set close, window dimensions, location on screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setSize(742, 280);
 		setResizable(false);
 		
-		//Добавляем основную панель, надписи
+		//Adding some text
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
 		panel.setLayout(null);
@@ -64,7 +64,7 @@ public class InterfaceCreator extends JFrame{
 		lblUrl.setBounds(63, 132, 109, 14);
 		panel.add(lblUrl);
 		
-		//Добавляем поля ввода текста
+		//Adding textfields
 		textTitle = new JTextField();
 		textTitle.setBounds(245, 36, 109, 20);
 		panel.add(textTitle);
@@ -90,7 +90,7 @@ public class InterfaceCreator extends JFrame{
 		panel.add(textWidgth);
 		textWidgth.setColumns(10);				
 		
-		//Создаем группу кнопок для выбора пингвина
+		//Creating button set for choosing image
 		groupPenguins = new ButtonGroup();
 		
 		JRadioButton rdbtnPs = new JRadioButton("PS4");
@@ -129,12 +129,12 @@ public class InterfaceCreator extends JFrame{
 		rdbtnSwitch_1.setActionCommand("Switch2");
 		panel.add(rdbtnSwitch_1);
 		
-		//Создаем кнопку генерации, делаем фрейм видимым
+		//Creating generating button, set frame to visible
 		button = new JButton("Генерировать");
 		button.setBounds(466, 191, 144, 23);
 		panel.add(button);
 		
-		//Создаем выпадающие списки с цветами
+		//Creating combo box to choose colors
 		String[] colors = {"Синий", "Черный", "Белый"};
 		comboBox = new JComboBox<String>(colors);
 		comboBox.setBounds(245, 191, 109, 22);

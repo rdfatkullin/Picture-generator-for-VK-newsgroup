@@ -15,7 +15,7 @@ public class ListenerInter implements ActionListener{
 	}
 	
 	public void getURLImage() {
-		//Получаем URL фонового изображения, отправляем в принтер
+		//Trying to get image from URL, sending that image to printer object
 		try {
 			URL url = new URL(in.txtURL.getText());
 			print.getBackground(url);
@@ -26,7 +26,7 @@ public class ListenerInter implements ActionListener{
 
 	public void actionPerformed(ActionEvent ev) {
 		
-		//Согласно выбранному пингвину выводим всё изображение, если ничего нет - выводим сообщение
+		//creating whole image based on choises made
 		if (in.groupPenguins.getSelection() != null) {
 			print.setWidgth(in.textWidgth.getText());
 			getURLImage();
@@ -35,7 +35,7 @@ public class ListenerInter implements ActionListener{
 			String angle = in.textAngle.getText();
 			print.printAll(in.groupPenguins.getSelection().getActionCommand(), title, up, angle, (String) in.comboBox.getSelectedItem(), (String) in.comboBox_1.getSelectedItem());
 		} else {
-			JOptionPane.showMessageDialog(null, "Выберите пингвина");
+			JOptionPane.showMessageDialog(null, "Choose a penguin");
 		}			
 	}
 }

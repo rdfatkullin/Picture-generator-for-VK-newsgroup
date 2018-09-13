@@ -23,7 +23,7 @@ public class Printer extends JFrame{
 	Graphics imgGrap;
 	
 	public Printer() {
-		//Создаем новый фрейм, задаем размеры, создаем treemap с цветами
+		//Generating new window for picture preview
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -44,12 +44,12 @@ public class Printer extends JFrame{
 	
 	
 	public void getBackground(URL url) {
-		//Запоминаем картинку по ссылке
+		//Grabbing image from urg
 		back = new Drawable(url);
 	}
 	
 	public void printStrip() {
-		// Устанавливаем цвета для градиента, сам градиент + рисуем ленту
+		// Setting gradient, drawing the tape at bottom
 		Graphics2D gg = (Graphics2D) imgGrap;
 		Color startColor = new Color (252,252,252,204);
 		Color endColor = new Color (220,233,250,204);
@@ -61,7 +61,7 @@ public class Printer extends JFrame{
 	}
 	
 	public void printText(String title, String up, String angle, String colorUp, String colorAngle) {
-		// Рисуем надписи, начинаем с основной
+		// Adding text to the picture, main text first
 		title = title.toUpperCase();
 		Graphics2D gg = (Graphics2D) imgGrap;
 		gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -70,14 +70,14 @@ public class Printer extends JFrame{
 		gg.setFont(new Font("Segoe UI Light", Font.PLAIN, fontSize));
 		gg.drawString(title, x/2 - (int) (x*0.12) - (int) Math.round(fontSize*title.length()*0.3), y0 + (y1 - y0)/2+ (int) Math.round(0.34*fontSize));
 
-		//Рисуем надпись выше основной
+		//Adding text to the upper part
 		fontSize = getFont(up);
 		up = up.toUpperCase();
 		gg.setColor(new Color (colors.get(colorUp)[0], colors.get(colorUp)[1], colors.get(colorUp)[2]));
 		gg.setFont(new Font("Segoe UI Light", Font.PLAIN, (int) Math.round(fontSize*0.5)));
 		gg.drawString(up, x/2 - (int) Math.round(up.length()*0.125), y0 - (int)Math.round(y * 0.005));
 		
-		//Рисуем надпись под углом
+		//Adding text at specified angle
 		fontSize = getFont(angle);
 		angle = angle.toUpperCase();
 		gg.setColor(new Color (colors.get(colorAngle)[0], colors.get(colorAngle)[1], colors.get(colorAngle)[2]));
@@ -98,6 +98,7 @@ public class Printer extends JFrame{
 	}
 	
 	public void saveImage() {
+		// saving that image in PNG
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm");
 		Date date = new Date();
 		System.out.println(dateFormat.format(date));
@@ -109,16 +110,18 @@ public class Printer extends JFrame{
 	}
 	
 	public void printAll(String btn, String title, String up, String angle, String colorUp, String colorAngle) {
-		//Выводим все на экран
+		//Creating image
 		buf = new BufferedImage(x, y, BufferedImage.TYPE_INT_ARGB);
 		imgGrap = buf.getGraphics();
 		peng = new Drawable("resources/ping/" + btn + ".png");
-		imgGrap.drawImage(back.getImage(), 0, 0, x, y, 0, 0, back.imgIc.getIconWidth(), back.imgIc.getIconHeight(), null);					// Рисуем фон
+		// Background
+		imgGrap.drawImage(back.getImage(), 0, 0, x, y, 0, 0, back.imgIc.getIconWidth(), back.imgIc.getIconHeight(), null);
 		printStrip();
 		printText(title, up, angle, colorUp, colorAngle);
         int px = (int) Math.round(0.4*x);
         int py = (int) Math.round(0.7*y);
-		imgGrap.drawImage(peng.getImage(), px, py, x, (int) (1.74*y), 0, 0, peng.imgIc.getIconWidth(), peng.imgIc.getIconHeight(), null);	// Рисуем пингвина
+		// Drawing penguin
+		imgGrap.drawImage(peng.getImage(), px, py, x, (int) (1.74*y), 0, 0, peng.imgIc.getIconWidth(), peng.imgIc.getIconHeight(), null);
         saveImage();
 		
 		JPanel pane = new JPanel() {
